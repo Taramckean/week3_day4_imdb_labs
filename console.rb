@@ -29,5 +29,22 @@ casting2.save()
 casting3 = Casting.new({ 'movie_id' => movie3.id, 'star_id' => star3.id, 'fee' => '100'})
 casting3.save()
 
+stars = Star.all()
+
+star1.first_name = "Bob"
+star1.last_name = "Burger"
+star1.update()
+
+updated_stars = Star.all()
+
+
+movies = Movie.all()
+
+movie1.title = "Spoons"
+movie1.update()
+
+casting1.fee = '888'
+casting1.update()
+
 binding.pry
 nil
