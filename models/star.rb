@@ -3,7 +3,7 @@ require_relative("../db/sql_runner")
 class Star
 
   attr_reader :id
-  attr_accessor :first_name, :last_names
+  attr_accessor :first_name, :last_name
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
@@ -13,13 +13,22 @@ class Star
 
   def save()
     sql = "INSERT INTO stars
-    (name) VALUES
+    (first_name, last_name) VALUES
     ($1, $2)
     RETURNING id"
     values = [@first_name, @last_name]
     user = SqlRunner.run( sql, values ).first
     @id = user['id'].to_i
   end
+
+  def update()
+    sql = "
+    UPDATE star SET (first_name, last_name) =
+      ($1,$2)
+      WHERE id = $3"
+      values = [@first_name, @last_name]
+      SqlRunner.run(sql, values)
+    end
 
   def self.all()
     sql = "SELECT * FROM stars"
