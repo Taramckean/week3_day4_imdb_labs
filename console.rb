@@ -46,5 +46,10 @@ movie1.update()
 casting1.fee = '888'
 casting1.update()
 
+movie1.star()
+
+star3.movie()
+
+
 binding.pry
 nil
